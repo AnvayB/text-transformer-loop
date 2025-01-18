@@ -5,18 +5,7 @@ interface QuestionsSidebarProps {
 }
 
 export function QuestionsSidebar({ onQuestionClick }: QuestionsSidebarProps) {
-  const questions = [
-    "What is the target audience?",
-    "What are the security requirements?",
-    "What is the expected timeline?",
-    "What is the project scope?",
-    "What are the main features needed?",
-    "What are the technical constraints?",
-    "What is the budget range?",
-    "Are there any specific compliance requirements?",
-    "What are the performance requirements?",
-    "What is the deployment strategy?"
-  ];
+  const questions: string[] = [];
 
   return (
     <div className="w-64 bg-sidebar p-4 border-l">
