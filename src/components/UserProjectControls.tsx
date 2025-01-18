@@ -6,39 +6,56 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useState } from "react";
 
 export function UserProjectControls() {
+  const [users, setUsers] = useState(["User 1", "User 2"]);
+  const [projects, setProjects] = useState(["Project 1", "Project 2"]);
+  const [selectedUser, setSelectedUser] = useState<string>();
+  const [selectedProject, setSelectedProject] = useState<string>();
+
   const handleSaveData = () => {
     console.log("Saving data to JSON...");
+    // Here you would typically save the data to your backend
   };
 
   const handleCreateUser = () => {
-    console.log("Creating new user...");
+    const newUser = `User ${users.length + 1}`;
+    setUsers((prev) => [...prev, newUser]);
+    console.log("Creating new user:", newUser);
   };
 
   const handleCreateProject = () => {
-    console.log("Creating new project...");
+    const newProject = `Project ${projects.length + 1}`;
+    setProjects((prev) => [...prev, newProject]);
+    console.log("Creating new project:", newProject);
   };
 
   return (
     <div className="flex flex-wrap gap-4 items-center p-4 bg-muted/50 rounded-lg">
-      <Select>
+      <Select value={selectedUser} onValueChange={setSelectedUser}>
         <SelectTrigger className="w-[200px]">
           <SelectValue placeholder="Select user" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="user1">User 1</SelectItem>
-          <SelectItem value="user2">User 2</SelectItem>
+          {users.map((user) => (
+            <SelectItem key={user} value={user}>
+              {user}
+            </SelectItem>
+          ))}
         </SelectContent>
       </Select>
 
-      <Select>
+      <Select value={selectedProject} onValueChange={setSelectedProject}>
         <SelectTrigger className="w-[200px]">
           <SelectValue placeholder="Select project" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="project1">Project 1</SelectItem>
-          <SelectItem value="project2">Project 2</SelectItem>
+          {projects.map((project) => (
+            <SelectItem key={project} value={project}>
+              {project}
+            </SelectItem>
+          ))}
         </SelectContent>
       </Select>
 
